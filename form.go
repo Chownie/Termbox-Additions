@@ -5,7 +5,7 @@ import (
 	"github.com/nsf/termbox-go"
 )
 
-func GetFormDimensions(text string) (int, int) {
+func GetFormSize(text string) (int, int) {
 	width := len(text)
 	height := 4
 	return width, height
@@ -25,7 +25,7 @@ func drawInput(x, y int, input string) {
 
 func DrawForm(x, y int, text string) string {
 	input := ""
-	width, height := GetFormDimensions(text)
+	width, height := GetFormSize(text)
 
 loop:
 	for {
