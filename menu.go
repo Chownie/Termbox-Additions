@@ -5,7 +5,7 @@ import (
 	"github.com/nsf/termbox-go"
 )
 
-func getDimensions(text string, options []string) (int, int) {
+func getMenuDimensions(text string, options []string) (int, int) {
 	width := len(text)
 	for i := 0; i < len(options); i++ {
 		if len(options[i]) > width {
@@ -30,7 +30,7 @@ func DrawSelection(x, y int, sel int) {
 
 func DrawMenu(x, y int, text string, options []string) int {
 	selection := 0
-	width, height := getDimensions(text, options)
+	width, height := getMenuDimensions(text, options)
 
 loop:
 	for {
