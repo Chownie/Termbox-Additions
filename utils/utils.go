@@ -17,7 +17,7 @@ const (
 func DrawRichTextMulti(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
 	lines := strings.SplitAfterN(text, "\n", -1)
 	for i := 0; i < len(lines); i++ {
-		DrawText(x, y+i, lines[i], fgColor, bgColor)
+		DrawRichText(x, y+i, lines[i], fgColor, bgColor)
 	}
 }
 
