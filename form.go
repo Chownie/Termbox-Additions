@@ -1,4 +1,4 @@
-package main
+package additions
 
 import (
 	. "github.com/chownplusx/Termbox-Additions/utils"
