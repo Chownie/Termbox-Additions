@@ -14,6 +14,21 @@ const (
 	HORIZONTAL  = "─"
 )
 
+func DrawRichTextMulti(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
+	lines := strings.SplitAfterN(text, "\n", -1)
+	for i := 0; i < len(lines); i++ {
+		DrawText(x, y+i, lines[i], fgColor, bgColor)
+	}
+}
+
+func DrawRichText(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
+	j := 0
+	for _, r := range text {
+		termbox.SetCell(x+j, y, r, fgColor, bgColor)
+		j += 1
+	}
+}
+
 func DrawText(x, y int, text string) {
 	j := 0
 	for _, r := range text {
