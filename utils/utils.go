@@ -2,6 +2,7 @@ package utils
 
 import (
 	"github.com/nsf/termbox-go"
+	"strings"
 )
 
 const (

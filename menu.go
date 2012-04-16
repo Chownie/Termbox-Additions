@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/chownplusx/Termbox-Additions/utils"
 	"github.com/nsf/termbox-go"
-	"utils"
 )
 
 func getDimensions(text string, options []string) (int, int) {
