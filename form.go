@@ -1,7 +1,7 @@
 package additions
 
 import (
-	. "github.com/chownplusx/Termbox-Additions/utils"
+	. "github.com/chownie/Termbox-Additions/utils"
 	"github.com/nsf/termbox-go"
 )
 
