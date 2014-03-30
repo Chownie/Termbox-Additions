@@ -32,7 +32,6 @@ func DrawMenu(x, y int, text string, options []string) int {
 	selection := 0
 	width, height := GetMenuSize(text, options)
 
-loop:
 	for {
 
 		DrawBox(x, y, width, height)     // Draw the surrounding box

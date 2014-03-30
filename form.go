@@ -27,7 +27,6 @@ func DrawForm(x, y int, text string) string {
 	input := ""
 	width, height := GetFormSize(text)
 
-loop:
 	for {
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
 		DrawBox(x, y, width, height)
