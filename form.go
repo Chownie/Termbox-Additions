@@ -23,18 +23,32 @@ func drawInput(x, y int, input string) {
 	DrawText(x+1, y+1, input)
 }
 
-func DrawForm(x, y int, text string) string {
+func DrawForm(x, y int, text string, style int) string {
 	input := ""
 	width, height := GetFormSize(text)
-
+	posx := 0
+	posy := 0
+	
+	if style == AL_LEFT {
+		posx = 0 
+	} else if style == AL_CENTER {
+		posx = (x/2) - (width/2)
+		posy = (y/2) - (height/2)
+	} else if style == AL_RIGHT {
+		posx = x-width
+		posy = y-height
+	}
+	
 loop:
 	for {
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
-		DrawBox(x, y, width, height)
-		drawSelection(x, y, len(input)-1)
-		drawOptions(x, y, text)
-		drawInput(x, y, input)
+		DrawBox(posx, posy, width, height)
+		drawSelection(posx, posy, len(input)-1)
+		drawOptions(posx, posy, text)
+		drawInput(posx, posy, input)
 		termbox.Flush()
+		
+		
 		switch ev := termbox.PollEvent(); ev.Type {
 		case termbox.EventKey:
 			switch ev.Key {
