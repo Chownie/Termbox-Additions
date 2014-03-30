@@ -37,7 +37,8 @@ func DrawSelection(x, y int, sel int) {
 func DrawMenu(x, y int, text string, options []string, style int) int {
 	selection := 0
 	width, height := GetMenuSize(text, options)
-	posx, posy := 0
+	posx := 0
+	posy := 0
 loop:
 	for {
 		if style == AL_LEFT {
