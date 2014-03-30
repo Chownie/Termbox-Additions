@@ -34,25 +34,25 @@ func DrawSelection(x, y int, sel int) {
 	DrawText(x+1, y+1+sel, ">")
 }
 
-func DrawMenu(x, y int, text string, options []string, option int) int {
+func DrawMenu(x, y int, text string, options []string, style int) int {
 	selection := 0
 	width, height := GetMenuSize(text, options)
-
+	posx, posy := 0
 loop:
 	for {
-		if option == AL_LEFT {
-			x = 0
-		} else if option == AL_CENTER {
-			x = (x/2) - (width/2)
-			y = (y/2) - (height/2)
-		} else if option == AL_RIGHT {
-			x = x-width
-			y = y-height
+		if style == AL_LEFT {
+			posx = 0
+		} else if style == AL_CENTER {
+			posx = (x/2) - (width/2)
+			posy = (y/2) - (height/2)
+		} else if style == AL_RIGHT {
+			posx = x-width
+			posy = y-height
 		}
 		
-		DrawBox(x, y, width, height)     // Draw the surrounding box
-		DrawSelection(x, y, selection)   // Draw the selector arrow
-		DrawOptions(x, y, options, text) // Draw the option text + title
+		DrawBox(posx, posy, width, height)     // Draw the surrounding box
+		DrawSelection(posx, posy, selection)   // Draw the selector arrow
+		DrawOptions(posx, posy, options, text) // Draw the option text + title
 		
 
 		termbox.Flush()
