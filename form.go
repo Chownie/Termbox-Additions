@@ -67,5 +67,6 @@ loop:
 			}
 		}
 	}
+	termbox.Flush()
 	return input
 }
