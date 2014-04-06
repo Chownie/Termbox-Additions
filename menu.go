@@ -74,5 +74,6 @@ loop:
 			}
 		}
 	}
+	termbox.Flush()
 	return selection
 }
