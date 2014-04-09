@@ -58,10 +58,9 @@ loop:
 				input = input[:len(input)-1]
 			case termbox.KeyBackspace2:
 				input = input[:len(input)-1]
-			case termbox.KeySpace:
-				input += " "
 			}
 			switch ev.Ch {
+			case "\b":
 			default:
 				input += string(ev.Ch)
 			}
