@@ -60,7 +60,7 @@ loop:
 				input = input[:len(input)-1]
 			}
 			switch ev.Ch {
-			case "\b":
+			case '\b':
 			default:
 				input += string(ev.Ch)
 			}
