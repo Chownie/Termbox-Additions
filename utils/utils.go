@@ -6,12 +6,22 @@ import (
 )
 
 const (
-	TOPLEFT     = "┌"
-	TOPRIGHT    = "┐"
-	BOTTOMLEFT  = "└"
-	BOTTOMRIGHT = "┘"
-	VERTICAL    = "│"
-	HORIZONTAL  = "─"
+	TOPLEFT       = "┌"
+	TOPRIGHT      = "┐"
+	BOTTOMLEFT    = "└"
+	BOTTOMRIGHT   = "┘"
+	VERTICAL      = "│"
+	HORIZONTAL    = "─"
+	JOIN_LEFT  = "├"
+	JOIN_RIGHT = "┤"
+	JOIN_TOP   = "┬"
+	JOIN_BOT   = "┴"
+	//Modes
+	CONNECT_TOP   = iota
+	CONNECT_BOT
+	CONNECT_LEFT
+	CONNECT_RIGHT
+	CONNECT_NONE
 )
 
 func DrawRichTextMulti(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
@@ -44,10 +54,20 @@ func DrawTextMulti(x, y int, text string) {
 	}
 }
 
-func DrawBox(x, y, width, height int) {
-	DrawText(x, y, TOPLEFT+strings.Repeat(HORIZONTAL, width+2)+TOPRIGHT)
+func DrawBox(x, y, width, height, mode int) {
+	if mode == CONNECT_TOP {
+		DrawText(x, y, JOIN_LEFT+strings.Repeat(HORIZONTAL, width+2)+JOIN_RIGHT)
+	} else {
+		DrawText(x, y, TOPLEFT+strings.Repeat(HORIZONTAL, width+2)+TOPRIGHT)
+	}
+	
 	for i := 1; i < height+1; i++ {
 		DrawText(x, y+i, VERTICAL+strings.Repeat(" ", width+2)+VERTICAL)
 	}
-	DrawText(x, y+height, BOTTOMLEFT+strings.Repeat(HORIZONTAL, width+2)+BOTTOMRIGHT)
+	
+	if mode == CONNECT_BOT {
+		DrawText(x, y+height, JOIN_LEFT+strings.Repeat(HORIZONTAL, width+2)+JOIN_RIGHT)
+	} else {
+		DrawText(x, y+height, BOTTOMLEFT+strings.Repeat(HORIZONTAL, width+2)+BOTTOMRIGHT)
+	}
 }
