@@ -66,9 +66,7 @@ func DrawBox(x, y, width, height, mode int) {
 		TRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_TOP+CONNECT_LEFT {
 		TLCorner = JOIN_ALL
-		TRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_TOP+CONNECT_RIGHT {
-		TLCorner = JOIN_TOP
 		TRCorner = JOIN_ALL
 	} else if mode == CONNECT_LEFT {
 		TLCorner = JOIN_TOP
@@ -90,9 +88,7 @@ func DrawBox(x, y, width, height, mode int) {
 		BRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_BOT+CONNECT_LEFT {
 		BLCorner = JOIN_ALL
-		BRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_BOT+CONNECT_RIGHT {
-		BLCorner = JOIN_BOT
 		BRCorner = JOIN_ALL
 	} else if mode == CONNECT_LEFT {
 		BLCorner = JOIN_BOT
