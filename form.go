@@ -23,7 +23,7 @@ func drawInput(x, y int, input string) {
 	DrawText(x+1, y+1, input)
 }
 
-func DrawForm(x, y int, text string, style int) string {
+func DrawForm(x, y int, text string, style, mode int) string {
 	input := ""
 	width, height := GetFormSize(text)
 	posx := 0
@@ -42,7 +42,7 @@ func DrawForm(x, y int, text string, style int) string {
 loop:
 	for {
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
-		DrawBox(posx, posy, width, height)
+		DrawBox(posx, posy, width, height, mode)
 		drawSelection(posx, posy, len(input)-1)
 		drawOptions(posx, posy, text)
 		drawInput(posx, posy, input)
