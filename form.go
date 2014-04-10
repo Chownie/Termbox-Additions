@@ -23,7 +23,7 @@ func drawInput(x, y int, input string) {
 	DrawText(x+1, y+1, input)
 }
 
-func DrawForm(x, y int, text string, style, mode int) string {
+func DrawForm(x, y int, text string, style, mode, limit int) string {
 	input := ""
 	width, height := GetFormSize(text)
 	posx := 0
@@ -63,15 +63,12 @@ loop:
 					input = input[:len(input)-1]
 				}
 			}
-			
-			switch {
-			case ev.Ch >= 65 && ev.Ch <= 122:
-				if len(input) == 18 {
-					input += string(ev.Ch)
-				}
-			case ev.Ch == 32: 
-				if len(input) == 18 {
-					input += string(ev.Ch)
+			if len(input) < limit {
+				switch {
+				case ev.Ch >= 65 && ev.Ch <= 122:
+						input += string(ev.Ch)
+				case ev.Ch == 32: 
+						input += string(ev.Ch)
 				}
 			}
 		}
