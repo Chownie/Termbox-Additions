@@ -65,15 +65,15 @@ func DrawBox(x, y, width, height, mode int) {
 		TLCorner = JOIN_LEFT
 		TRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_TOP+CONNECT_LEFT {
-		TLCorner := JOIN_ALL
-		TRCorner := JOIN_RIGHT
+		TLCorner = JOIN_ALL
+		TRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_TOP+CONNECT_RIGHT {
-		TLCorner := JOIN_TOP
-		TRCorner := JOIN_ALL
+		TLCorner = JOIN_TOP
+		TRCorner = JOIN_ALL
 	} else if mode == CONNECT_LEFT {
-		TLCorner := JOIN_TOP
+		TLCorner = JOIN_TOP
 	} else if mode == CONNECT_RIGHT {
-		TRCorner := JOIN_TOP
+		TRCorner = JOIN_TOP
 	}
 	
 	
@@ -89,15 +89,15 @@ func DrawBox(x, y, width, height, mode int) {
 		BLCorner = JOIN_LEFT
 		BRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_TOP+CONNECT_LEFT {
-		BLCorner := JOIN_ALL
-		BRCorner := JOIN_RIGHT
+		BLCorner = JOIN_ALL
+		BRCorner = JOIN_RIGHT
 	} else if mode == CONNECT_TOP+CONNECT_RIGHT {
-		BLCorner := JOIN_BOT
-		BRCorner := JOIN_ALL
+		BLCorner = JOIN_BOT
+		BRCorner = JOIN_ALL
 	} else if mode == CONNECT_LEFT {
-		BLCorner := JOIN_BOT
+		BLCorner = JOIN_BOT
 	} else if mode == CONNECT_RIGHT {
-		BRCorner := JOIN_BOT
+		BRCorner = JOIN_BOT
 	}
 	
 	DrawText(x, y+height, BLCorner+strings.Repeat(HORIZONTAL, width+2)+BRCorner)
