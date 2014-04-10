@@ -63,9 +63,16 @@ loop:
 					input = input[:len(input)-1]
 				}
 			}
+			
 			switch {
-			case ev.Ch >= 65 && ev.Ch <= 122: input += string(ev.Ch)
-			case ev.Ch == 32: input += string(ev.Ch)
+			case ev.Ch >= 65 && ev.Ch <= 122:
+				if len(input) == 18 {
+					input += string(ev.Ch)
+				}
+			case ev.Ch == 32: 
+				if len(input) == 18 {
+					input += string(ev.Ch)
+				}
 			}
 		}
 	}
