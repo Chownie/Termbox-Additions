@@ -54,7 +54,11 @@ loop:
 			switch ev.Key {
 			case termbox.KeyEnter:
 				break loop
-			case termbox.KeyBackspace || termbox.KeyBackspace2:
+			case termbox.KeyBackspace:
+				if len(input) > 0 {
+					input = input[:len(input)-1]
+				}
+			case termbox.KeyBackspace2:
 				if len(input) > 0 {
 					input = input[:len(input)-1]
 				}
