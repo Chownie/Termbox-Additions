@@ -6,22 +6,25 @@ import (
 )
 
 const (
-	TOPLEFT       = "┌"
-	TOPRIGHT      = "┐"
-	BOTTOMLEFT    = "└"
-	BOTTOMRIGHT   = "┘"
-	VERTICAL      = "│"
-	HORIZONTAL    = "─"
-	JOIN_LEFT  = "├"
-	JOIN_RIGHT = "┤"
-	JOIN_TOP   = "┬"
-	JOIN_BOT   = "┴"
-	//Modes
-	CONNECT_TOP   = iota
-	CONNECT_BOT
-	CONNECT_LEFT
-	CONNECT_RIGHT
-	CONNECT_NONE
+	// Box Drawing
+	TOPLEFT		= "┌"
+	TOPRIGHT	= "┐"
+	BOTTOMLEFT	= "└"
+	BOTTOMRIGHT	= "┘"
+	VERTICAL	= "│"
+	HORIZONTAL	= "─"
+	// Joining Marks
+	JOIN_TOP	= "┬"
+	JOIN_LEFT	= "├"
+	JOIN_RIGHT	= "┤"
+	JOIN_BOT	= "┴"
+	JOIN_ALL	= "┼"
+	// Modes
+	CONNECT_NONE	= 0
+	CONNECT_TOP	= 1
+	CONNECT_BOT	= 4
+	CONNECT_LEFT	= 8
+	CONNECT_RIGHT	= 2
 )
 
 func DrawRichTextMulti(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
@@ -55,19 +58,47 @@ func DrawTextMulti(x, y int, text string) {
 }
 
 func DrawBox(x, y, width, height, mode int) {
+	TRCorner := TOPRIGHT
+	TLCorner := TOPLEFT
+	
 	if mode == CONNECT_TOP {
-		DrawText(x, y, JOIN_LEFT+strings.Repeat(HORIZONTAL, width+2)+JOIN_RIGHT)
-	} else {
-		DrawText(x, y, TOPLEFT+strings.Repeat(HORIZONTAL, width+2)+TOPRIGHT)
+		TLCorner = JOIN_LEFT
+		TRCorner = JOIN_RIGHT
+	} else if mode == CONNECT_TOP+CONNECT_LEFT {
+		TLCorner := JOIN_ALL
+		TRCorner := JOIN_RIGHT
+	} else if mode == CONNECT_TOP+CONNECT_RIGHT {
+		TLCorner := JOIN_TOP
+		TRCorner := JOIN_ALL
+	} else if mode == CONNECT_LEFT {
+		TLCorner := JOIN_TOP
+	} else if mode == CONNECT_RIGHT {
+		TRCorner := JOIN_TOP
 	}
+	
+	
+	DrawText(x, y, TLCorner+strings.Repeat(HORIZONTAL, width+2)+TRCorner)
 	
 	for i := 1; i < height+1; i++ {
 		DrawText(x, y+i, VERTICAL+strings.Repeat(" ", width+2)+VERTICAL)
 	}
-	
+
+	BRCorner := BOTTOMRIGHT
+	BLCorner := BOTTOMLEFT	
 	if mode == CONNECT_BOT {
-		DrawText(x, y+height, JOIN_LEFT+strings.Repeat(HORIZONTAL, width+2)+JOIN_RIGHT)
-	} else {
-		DrawText(x, y+height, BOTTOMLEFT+strings.Repeat(HORIZONTAL, width+2)+BOTTOMRIGHT)
+		BLCorner = JOIN_LEFT
+		BRCorner = JOIN_RIGHT
+	} else if mode == CONNECT_TOP+CONNECT_LEFT {
+		BLCorner := JOIN_ALL
+		BRCorner := JOIN_RIGHT
+	} else if mode == CONNECT_TOP+CONNECT_RIGHT {
+		BLCorner := JOIN_BOT
+		BRCorner := JOIN_ALL
+	} else if mode == CONNECT_LEFT {
+		BLCorner := JOIN_BOT
+	} else if mode == CONNECT_RIGHT {
+		BRCorner := JOIN_BOT
 	}
+	
+	DrawText(x, y+height, BLCorner+strings.Repeat(HORIZONTAL, width+2)+BRCorner)
 }
