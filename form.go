@@ -59,10 +59,9 @@ loop:
 			case termbox.KeyBackspace2:
 				input = input[:len(input)-1]
 			}
-			switch ev.Ch {
-			case '\b':
-			default:
-				input += string(ev.Ch)
+			switch {
+			case ev.Ch >= 65 && ev.Ch <= 122: input += string(ev.Ch)
+			case ev.Ch == 32: input += string(ev.Ch)
 			}
 		}
 	}
