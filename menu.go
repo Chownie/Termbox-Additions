@@ -34,7 +34,7 @@ func DrawSelection(x, y int, sel int) {
 	DrawText(x+1, y+1+sel, ">")
 }
 
-func DrawMenu(x, y int, text string, options []string, style int) int {
+func DrawMenu(x, y int, text string, options []string, style, mode int) int {
 	selection := 0
 	width, height := GetMenuSize(text, options)
 	posx := 0
@@ -51,7 +51,7 @@ loop:
 			posy = y-height
 		}
 		
-		DrawBox(posx, posy, width, height)     // Draw the surrounding box
+		DrawBox(posx, posy, width, height, mode)     // Draw the surrounding box
 		DrawSelection(posx, posy, selection)   // Draw the selector arrow
 		DrawOptions(posx, posy, options, text) // Draw the option text + title
 		
