@@ -29,6 +29,7 @@ const (
 
 func DrawRichTextMulti(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
 	lines := strings.SplitAfterN(text, "\n", -1)
+	lines = strings.Trim(lines, "\r\n")
 	for i := 0; i < len(lines); i++ {
 		DrawRichText(x, y+i, lines[i], fgColor, bgColor)
 	}
@@ -36,6 +37,7 @@ func DrawRichTextMulti(x, y int, text string, fgColor termbox.Attribute, bgColor
 
 func DrawRichText(x, y int, text string, fgColor termbox.Attribute, bgColor termbox.Attribute) {
 	j := 0
+	text = strings.Trim(text, "\r\n")
 	for _, r := range text {
 		termbox.SetCell(x+j, y, r, fgColor, bgColor)
 		j += 1
@@ -44,6 +46,7 @@ func DrawRichText(x, y int, text string, fgColor termbox.Attribute, bgColor term
 
 func DrawText(x, y int, text string) {
 	j := 0
+	text = strings.Trim(text, "\r\n")
 	for _, r := range text {
 		termbox.SetCell(x+j, y, r, termbox.ColorDefault, termbox.ColorDefault)
 		j += 1
